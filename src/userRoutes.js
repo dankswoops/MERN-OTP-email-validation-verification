@@ -1,0 +1,10 @@
+const router = require('express').Router();
+const { createUser, signin, verifyEmail, forgotPassword, resetPassword } = require('./userController');
+const { isResetTokenValid } = require('./userResetToken');
+const { validateUser, validate } = require('./userValidator');
+router.post('/create', validateUser, validate, createUser);
+router.post('/signin', signin);
+router.post('/verify-email', verifyEmail);
+router.post('/forgot-password', forgotPassword);
+router.post('/reset-password', isResetTokenValid, resetPassword);
+module.exports = router;
